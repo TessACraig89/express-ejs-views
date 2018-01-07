@@ -1,10 +1,13 @@
-/* setting up express */
+//sets up express, morgan and path
 const express = require('express');
+
 const logger = require('morgan');
+
 const path = require('path');
+
 const app = express();
 
-/* importing routes */
+//imports routes from
 const quoteRoutes = require('./routes/quotes');
 
 /* setting up port & listen */
@@ -13,16 +16,17 @@ app.listen(PORT, function() {
   console.log(`listening on port ${PORT}`);
 });
 
-/* setting up views */
+//set up ejs view 
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-/* setting static file */
+//add and serve static asset using express.static function
 app.use('/static', express.static(path.join(__dirname, 'public')));
-/* setting up logging */
+
+//add logger
 app.use(logger('dev'));
 
-/* setting routes */
+//get index from root folder
 app.get('/', function(req, res) {
   res.render('index', {
     message: 'Hello World!',
@@ -32,9 +36,10 @@ app.get('/', function(req, res) {
     quoteAuthors: ['Unknown', 'Yoda', 'CS Lewis', 'Frank Chimero', 'Pablo Picasso', 'Italo Calvino', 'T. S. Eliot', 'Samuel Beckett', 'Hunter S. Thompson'],
   });
 });
+
 app.use('/quotes', quoteRoutes);
 
-/* handling 404 */
+// get 404 page and send message
 app.get('*', function(req, res) {
   res.status(404).send({message: 'Oops! Not found.'});
 });
