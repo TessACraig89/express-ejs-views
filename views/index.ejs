@@ -1,21 +1,19 @@
-<!-- include boilerplate from partials folder -->
-<% include ../partials/boilerplate %>
+<% include partials/boilerplate %>
+
   <div class='hero'>
-    <!-- output message -->
     <h1><%= message %></h1>
-    <!-- output subTitle -->
     <h3><%= subTitle %></h3>
   </div>
-  <!-- if showmore is true then show this paragraph -->
   <% if (showMore === true) { %>
   <div class='more'>
     <p>Ada Quotes is a compilation of favorite quotes from the students of NYC-WDI-Ada. It's super cool and great.</p>
   </div>
-  <!-- end of if statment -->
   <% } %>
-  <!-- run function that loops through quoteAuthors and posts each author's name -->
+
+
   <p>We have quotes by <% quoteAuthors.forEach(function(author) { %>
     <%= author %>,
   <% }) %>.</p>
 
-  <% include ../partials/end %>
+<% include partials/end %>
+
