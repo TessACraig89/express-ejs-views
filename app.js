@@ -1,6 +1,7 @@
 //sets up express, morgan and path
 const express = require('express');
 
+//morgan used to log each http request to the console
 const logger = require('morgan');
 
 const path = require('path');
@@ -18,16 +19,17 @@ app.listen(PORT, function() {
 
 // where to look for the template , (what we're setting, where to look for the views)
 app.set('views', path.join(__dirname, 'views'));
+
 // what kind of template, (what we're setting, what kind of view engine to expect)
 app.set('view engine', 'ejs');
 
 //add and serve static asset using express.static function
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-//add logger
+//use morgan to log dev info to log
 app.use(logger('dev'));
 
-//when request is made to the home
+//when request is made to the home and show more is true
   // render, used to template, to pass message, documentTitle, subTitle, show more boolean value , and quote authors into index
 app.get('/', function(req, res) {
   res.render('index', {
@@ -39,9 +41,11 @@ app.get('/', function(req, res) {
   });
 });
 
+// when request to sent to quotes use quoteRoutes
 app.use('/quotes', quoteRoutes);
 
-// get 404 page and send message
+// app.get '*' catch all for all paths
+//  add a 404 status to the response, that routes back a response message
 app.get('*', function(req, res) {
   res.status(404).send({message: 'Oops! Not found.'});
 });

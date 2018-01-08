@@ -10,10 +10,9 @@
   </div>
   <% } %>
 
-
+<!-- loop through quoteAuthors array and post each index, authors name -->
   <p>We have quotes by <% quoteAuthors.forEach(function(author) { %>
     <%= author %>,
   <% }) %>.</p>
 
 <% include partials/end %>
-
