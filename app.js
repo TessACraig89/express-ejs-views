@@ -30,7 +30,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 
 //when request is made to the home and show more is true
-  // render, used to template, to pass message, documentTitle, subTitle, show more boolean value , and quote authors into index
+  // use render to send message, documentTitle, subTitle, show more boolean value , and quote authors back to client and put into a template firsr
 app.get('/', function(req, res) {
   res.render('index', {
     message: 'Hello World!',

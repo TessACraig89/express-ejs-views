@@ -1,11 +1,14 @@
-/* setting up router */
+//set up express
 const express = require('express');
+
+//create modular, mountable route handlers using express.Router
 const quoteRoutes = express.Router();
 
-/* getting quotes from database */
+//require quotes from database and store in quotesData var
 const quotesData = require('../db/quotes');
 
-/* get all quotes */
+//when routes to home pafe
+  //render quotes/quotes-index view, quotesData object, quoteClass, and documentTitle
 quoteRoutes.get('/', function(req, res) {
   res.render('quotes/quotes-index', {
     quotes: quotesData,
@@ -14,6 +17,7 @@ quoteRoutes.get('/', function(req, res) {
   });
 });
 
+//when routed to home page push quotesData
 quoteRoutes.post('/', function(req, res) {
   quotesData.push({
     quote: req.body.quote,
@@ -23,7 +27,7 @@ quoteRoutes.post('/', function(req, res) {
   res.redirect('/quotes');
 });
 
-/* add quote */
+//define the add route
 
 quoteRoutes.get('/add', function(req, res) {
   res.render('quotes/quotes-add', {
@@ -34,10 +38,10 @@ quoteRoutes.get('/add', function(req, res) {
 /* get individual quote */
 quoteRoutes.get('/:id', function(req, res) {
   const id = req.params.id;
-  res.render('quotes/quotes-single', { 
+  res.render('quotes/quotes-single', {
     documentTitle: 'Ada quotes!!',
     quoteClass: 'single-quote',
-    quote: quotesData[id] 
+    quote: quotesData[id]
   });
 });
 

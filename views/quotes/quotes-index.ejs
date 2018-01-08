@@ -1,11 +1,32 @@
-<% include ../partials/boilerplate %>
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+  <title><%= documentTitle %></title>
+  <link rel='stylesheet' type='text/css' href='/static/styles/reset.css'>
+  <link rel='stylesheet' type='text/css' href='/static/styles/style.css'>
+</head>
+<body>
+
+<!-- link to add quote page -->
+<a href='/quotes/add'>Add a quote!</a>
+
 <div class='quotes'>
-  <% quotes.forEach(function(quote) { %>
+<!-- loops through quotes array, adding author, genre, and title of each quote to the page -->
+  <% quotesData.forEach(function(quote, index) { %>
     <div class='my-quote'>
-      <h3><%= quote.quote %></h3>
-      <span class='author'><%= quote.author %></span>
-      <span class='genre'><%= quote.genre %></span>
+      <h3><%=quote.quote%></h3>
+      <div class='meta'>
+        <span class='author'><%=quote.author%></span>
+        <span class='genre'><%=quote.genre.toUpperCase()%></span>
+      </div>
+      <!-- link to quotes page -->
+      <a href='/quotes/<%= index %>'>Go to page</a>
     </div>
   <% }) %>
 </div>
-<% include ../partials/end %>
+
+</body>
+</html>
