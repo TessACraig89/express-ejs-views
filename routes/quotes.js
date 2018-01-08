@@ -13,13 +13,17 @@ quoteRoutes.get('/', function(req, res) {
   });
 });
 
-//when routes to quotes/id 
+//when routes to quotes/id
 // gets individual quotes by id
   //require id paramaters and stor in id variable
     //send response of db quotes id
 quoteRoutes.get('/:id', function(req, res) {
   const id = req.params.id;
-  res.send(quotesData[id]);
+  res.render('quotes/quotes-single', {
+    documentTitle: "Ada\'s Quotes!!",
+    quoteClass: 'single-quote',
+    quote: quotesData[id]
+  });
 });
 
 //exports
