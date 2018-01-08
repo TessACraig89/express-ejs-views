@@ -9,21 +9,21 @@
   <link rel='stylesheet' type='text/css' href='/static/styles/style.css'>
 </head>
 <body>
-
   <div class='hero'>
     <h1><%= message %></h1>
     <h3><%= subTitle %></h3>
   </div>
+<!-- if showMore in app.js render index function is === true show div -->
   <% if (showMore === true) { %>
   <div class='more'>
     <p>Ada Quotes is a compilation of favorite quotes from the students of NYC-WDI-Ada. It's super cool and great.</p>
   </div>
   <% } %>
-
-<!-- loop through quoteAuthors array and post each index, authors name -->
+<!-- loop through quoteAuthors array and pass in author name -->
   <p>We have quotes by <% quoteAuthors.forEach(function(author) { %>
-    <%= author %>,
+    <%= author %>
   <% }) %>.</p>
-
+<!-- link to quotes -->
+  <a href = '/quotes'>See all quotes</a>
 </body>
 </html>

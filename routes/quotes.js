@@ -1,11 +1,11 @@
-/* setting up router */
+//sets up express
 const express = require('express');
+//sets up router
 const quoteRoutes = express.Router();
-
-/* getting quotes from database */
+//require quotes from database
 const quotesData = require('../db/quotes');
 
-/* get all quotes */
+//when routed to home page render quotes-index.ejs passing in db quotes
 quoteRoutes.get('/', function(req, res) {
   res.render('quotes/quotes-index', {
     documentTitle: 'Ada\'s Quotes!!',
@@ -13,11 +13,14 @@ quoteRoutes.get('/', function(req, res) {
   });
 });
 
-/* get individual quote */
+//when routes to quotes/id 
+// gets individual quotes by id
+  //require id paramaters and stor in id variable
+    //send response of db quotes id
 quoteRoutes.get('/:id', function(req, res) {
   const id = req.params.id;
   res.send(quotesData[id]);
 });
 
-/* exporting */
+//exports
 module.exports = quoteRoutes;
