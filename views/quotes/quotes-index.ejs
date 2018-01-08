@@ -10,11 +10,9 @@
 </head>
 <body>
 
-<!-- link to add quote page -->
 <a href='/quotes/add'>Add a quote!</a>
 
 <div class='quotes'>
-<!-- loops through quotes array, adding author, genre, and title of each quote to the page -->
   <% quotesData.forEach(function(quote, index) { %>
     <div class='my-quote'>
       <h3><%=quote.quote%></h3>
@@ -22,7 +20,6 @@
         <span class='author'><%=quote.author%></span>
         <span class='genre'><%=quote.genre.toUpperCase()%></span>
       </div>
-      <!-- link to quotes page -->
       <a href='/quotes/<%= index %>'>Go to page</a>
     </div>
   <% }) %>
